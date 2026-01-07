@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>北海道旅遊助手 (最終完美版)</title>
+    <title>北海道旅遊助手</title>
     
     <!-- ★★★ APP ICON 設定 (已幫您加入) ★★★ -->
     <link rel="icon" type="image/svg+xml" href="./icon.svg">
@@ -61,7 +61,7 @@
             BedDouble, Loader2, Coffee, UtensilsCrossed, PlaneTakeoff, PlaneLanding, Bus, ChefHat, 
             Lightbulb, ChevronDown, Thermometer, Image as ImageIcon, Upload, Smartphone, 
             Store, Banknote, Zap, RotateCw, AlertCircle, Trees, Building2, LandPlot,
-            Link as LinkIcon, ExternalLink, Bookmark, Search, Save
+            Link as LinkIcon, ExternalLink, Bookmark, Search, Save, Filter, User, Users, Heart, ShoppingCart, Calculator
         } from 'lucide-react';
 
         const HideScrollbarStyle = () => (
@@ -110,7 +110,7 @@
                     { name: '昭和新山', type: 'outdoor', busTime: '約 1.5 小時', desc: '活火山景觀。', food: '哈密瓜冰淇淋', souvenir: '藥用馬油' },
                     { name: '昭和新山熊牧場', type: 'outdoor', desc: '近距離觀察棕熊。', food: '熊餅乾', game: '扭蛋機' },
                     { name: '洞爺湖溫泉', type: 'outdoor', busTime: '約 15 分', desc: '不凍湖，晚上有燈飾。', food: 'Wakasaimo甜點' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '洞爺湖太陽宮度假飯店。\n📍 地址：日本北海道有珠郡壯瞥町洞爺湖溫泉 7-1' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '洞爺湖太陽宮度假飯店。\n📍 地址：日本北海道有珠郡壯瞥町洞爺湖溫泉 7-1\n📞 電話：+81-142-75-1111' }
                 ]
             },
             {
@@ -124,9 +124,9 @@
                     { name: '大沼國定公園', type: 'outdoor', busTime: '約 2 小時', desc: '新日本三景。', food: '沼之家糰子' },
                     { name: '雪盆戲雪', type: 'outdoor', desc: '體驗雪上活動。' },
                     { name: '百年女子修道院', type: 'outdoor', busTime: '約 50 分', desc: '莊嚴紅磚建築。', food: '市民之森牛奶霜淇淋', souvenir: '瑪德蓮蛋糕' },
-                    { name: '金森倉庫群', type: 'mixed', busTime: '約 30 分', desc: '明治時代紅磚倉庫。', food: 'Snaffle\'s 起司蛋糕' },
+                    { name: '金森倉庫群', type: 'mixed', busTime: '約 30 分', desc: '明治時代紅磚倉庫。', food: 'Snaffle\'s / Petite Merveille', souvenir: '起司蛋糕' },
                     { name: '函館纜車', type: 'outdoor', busTime: '約 15 分', desc: '世界三大夜景。', souvenir: '限定磁鐵' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '函館湯之川溫泉。\n📍 地址：日本北海道函館市湯川町 1 丁目 3-8' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '函館湯之川溫泉 (HEISEIKAN)。\n📍 地址：日本北海道函館市湯川町 1 丁目 3-8' }
                 ]
             },
             {
@@ -142,7 +142,7 @@
                     { name: '登別地獄谷', type: 'outdoor', busTime: '約 15 分', desc: '火山地形景觀。' },
                     { name: '湯澤神社', type: 'outdoor', desc: '溫泉守護神。', souvenir: '溫泉御守' },
                     { name: '登別溫泉街', type: 'outdoor', desc: '閻魔堂變臉秀。', food: '閻魔炒麵', tips: '變臉秀有固定時間。' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '登別溫泉。\n📍 地址：日本北海道登別市登別溫泉町 65' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '登別溫泉 (HOTEL MAHOROBA)。\n📍 地址：日本北海道登別市登別溫泉町 65' }
                 ]
             },
             {
@@ -154,13 +154,13 @@
                 spots: [
                     { name: '飯店出發', type: 'indoor', isHotel: true, desc: '早餐後出發。' },
                     { name: '免稅店', type: 'indoor', busTime: '約 1.5 小時', desc: '購物站。', souvenir: '保養品' },
-                    { name: '小樽市浪漫遊', type: 'mixed', busTime: '約 45 分', desc: '運河、硝子館、音樂盒堂。', food: 'LeTAO / 北菓樓', tips: '可去唐吉軻德小樽店。' },
+                    { name: '小樽市浪漫遊', type: 'mixed', busTime: '約 45 分', desc: '運河、硝子館、音樂盒堂。', food: 'LeTAO / 北菓樓 / 炸魚板', tips: '可去唐吉軻德小樽店。' },
                     { name: '小樽運河', type: 'outdoor', desc: '浪漫運河畔。' },
                     { name: '北一硝子館', type: 'indoor', desc: '玻璃工藝。' },
                     { name: '音樂盒堂', type: 'indoor', desc: '各式音樂盒。' },
                     { name: '大通公園', type: 'outdoor', busTime: '約 50 分', desc: '白色燈樹節。' },
-                    { name: '狸小路商店街', type: 'mixed', desc: '藥妝與唐吉軻德。', food: '湯咖哩', souvenir: '藥妝' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '札幌公園精品酒店。\n📍 地址：日本北海道札幌市中央區南 9 條西 2 丁目' }
+                    { name: '狸小路商店街', type: 'mixed', desc: '藥妝與唐吉軻德。', food: '湯咖哩', souvenir: '藥妝/竹輪麵包' },
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '札幌公園精品酒店 (HOTEL MYSTAYS PREMIER SAPPORO PARK)。\n📍 地址：日本北海道札幌市中央區南 9 條西 2 丁目 2-10' }
                 ]
             },
             {
@@ -172,7 +172,7 @@
                 meals: { breakfast: '飯店內', lunch: '機上餐', dinner: '溫暖的家', recommendations: { breakfast: ['湯咖哩', '牛奶'] } },
                 spots: [
                     { name: '飯店出發', type: 'indoor', isHotel: true, desc: '早餐後前往機場。' },
-                    { name: '新千歲機場', type: 'indoor', busTime: '約 1 小時', desc: '最後採買機會。', food: '一幻拉麵', souvenir: '薯條三兄弟 / ROYCE', tips: '國內線商店較多。' }
+                    { name: '新千歲機場', type: 'indoor', busTime: '約 1 小時', desc: '最後採買機會。', food: '玉米麵包/一幻拉麵', souvenir: '薯條三兄弟/ROYCE/焦糖牛奶糖', tips: '國內線商店較多。' }
                 ]
             }
         ];
@@ -346,6 +346,48 @@
             useEffect(() => { const t = setTimeout(onClose, 2500); return () => clearTimeout(t); }, [onClose]);
             return <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-[#2E4057] text-[#F4B942] px-6 py-3 rounded-full shadow-xl z-[110] flex items-center gap-2 border border-[#F4B942]/30 animate-bounce"><CheckCircle size={18} /> <span className="text-sm font-bold">{message}</span></div>;
         };
+        
+        // Calculator Modal (Fix 5: Enhanced precision)
+        const CalculatorModal = ({ isOpen, onClose, initialValue, onConfirm }) => {
+            const [expression, setExpression] = useState(initialValue ? String(initialValue) : '');
+            const handleButtonClick = (val) => {
+                if (val === 'C') { setExpression(''); } 
+                else if (val === 'DEL') { setExpression(prev => prev.slice(0, -1)); } 
+                else if (val === '=') {
+                    try {
+                        const result = new Function('return ' + expression)();
+                        const val = Math.round(result * 10000) / 10000;
+                        setExpression(String(val)); 
+                    } catch (e) { setExpression('Error'); setTimeout(() => setExpression(''), 1000); }
+                } else { setExpression(prev => prev + val); }
+            };
+            const handleConfirm = () => {
+                let finalVal = expression;
+                if (/[\+\-\*\/]/.test(expression)) {
+                     try { 
+                         const result = new Function('return ' + expression)(); 
+                         finalVal = String(Math.round(result * 100) / 100); 
+                     } catch (e) {}
+                }
+                onConfirm(finalVal);
+                onClose();
+            };
+            if (!isOpen) return null;
+            const buttons = ['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', '+', 'C', 'DEL'];
+            return (
+                <div className="fixed inset-0 bg-[#2E4057]/90 backdrop-blur-sm z-[110] flex items-center justify-center p-4 modal-animate" onClick={onClose}>
+                    <div className="bg-[#EDF6FC] rounded-2xl w-full max-w-[300px] shadow-2xl overflow-hidden border border-[#F4B942]/30" onClick={e => e.stopPropagation()}>
+                        <div className="bg-[#2E4057] p-4 flex justify-between items-center"><h3 className="text-[#F4B942] font-bold text-lg">計算機</h3><button onClick={onClose}><X className="text-[#819FA1] hover:text-white" size={20}/></button></div>
+                        <div className="p-4">
+                            <div className="bg-white p-4 rounded-lg text-right text-2xl font-mono text-[#2E4057] mb-4 h-16 flex items-center justify-end overflow-hidden border border-[#819FA1]/20">{expression || '0'}</div>
+                            <div className="grid grid-cols-4 gap-2">{buttons.map(btn => (<button key={btn} onClick={() => handleButtonClick(btn)} className={`p-3 rounded-lg font-bold text-lg shadow-sm active:scale-95 transition-transform ${['C', 'DEL'].includes(btn) ? 'bg-red-100 text-red-600 col-span-2' : ['/', '*', '-', '+', '='].includes(btn) ? 'bg-[#F4B942]/20 text-[#D97706]' : 'bg-white text-[#2E4057]'}`}>{btn === 'DEL' ? <Trash2 size={18} className="mx-auto"/> : btn}</button>))}</div>
+                            <button onClick={handleConfirm} className="w-full mt-4 py-3 bg-[#2E4057] text-[#F4B942] rounded-xl font-bold shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2"><CheckCircle size={18}/> 確認金額</button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
         const OutfitModal = ({ isOpen, onClose, dayInfo }) => {
             if (!isOpen) return null;
             return (
@@ -398,6 +440,7 @@
             const [activeTab, setActiveTab] = useState('itinerary');
             const [activeDay, setActiveDay] = useState(0); 
             const [activeShoppingTab, setActiveShoppingTab] = useState('機場'); 
+            const [selectedLocation, setSelectedLocation] = useState('全部'); 
             
             // UI States
             const [showOutfitModal, setShowOutfitModal] = useState(false); 
@@ -405,6 +448,7 @@
             const [selectedMealInfo, setSelectedMealInfo] = useState(null);
             const [viewImage, setViewImage] = useState(null);
             const [toastMsg, setToastMsg] = useState('');
+            const [showCalculator, setShowCalculator] = useState(false);
 
             // Modals States
             const [confirmModal, setConfirmModal] = useState({ open: false, title: '', msg: '', onConfirm: null });
@@ -415,7 +459,7 @@
                 { id: 1, title: '日本旅遊信用卡攻略', url: 'https://www.beurlife.com/2022/09/best-credit-card-to-travel-japan.html', desc: '詳細比較吉鶴卡、熊本熊卡等優惠' }
             ]));
             const [newLinkData, setNewLinkData] = useState({ title: '', url: '' });
-            const [editingLinkId, setEditingLinkId] = useState(null); // 新增：編輯連結狀態
+            const [editingLinkId, setEditingLinkId] = useState(null); 
 
             const [isEditingCards, setIsEditingCards] = useState(false);
             const [showAddCardModal, setShowAddCardModal] = useState(false);
@@ -436,35 +480,109 @@
                 cost: '', 
                 category: 'shopping', 
                 cardId: '', 
-                note: '' 
+                note: '',
+                forWho: '個人' // NEW: Default target
             });
             const [editingExpense, setEditingExpense] = useState(null);
+            const whoOptions = ['個人', '男友', '家人', '朋友', '代購'];
+            const whoColors = { '個人': 'bg-blue-100 text-blue-700', '男友': 'bg-pink-100 text-pink-700', '家人': 'bg-green-100 text-green-700', '朋友': 'bg-orange-100 text-orange-700', '代購': 'bg-purple-100 text-purple-700' };
 
             const [expenses, setExpenses] = useState(() => safeJsonParse('expenses', []));
             const [budget, setBudget] = useState(() => safeJsonParse('budget', 200000)); 
 
             const [shoppingList, setShoppingList] = useState(() => safeJsonParse('shoppingList', {
                 "機場": [
-                    { name: "Snow Cheese", price: "¥1,296起", location: "國內線2F", desc: "【2025排隊王】生食感起司巧克力。", image: null },
-                    { name: "Kinotoya 起司塔", price: "¥220", location: "國內線2F", desc: "機場票選No.1，現烤流心。", image: null },
-                    { name: "PRESS BUTTER SAND", price: "¥1,242", location: "國內線2F", desc: "北海道限定白巧克力焦糖。", image: null },
-                    { name: "Royce 生巧克力", price: "¥864", location: "免稅店", desc: "經典不敗，需保冷。", image: null }
+                    { name: "Snow Cheese (Snow White Cheese)", price: "¥1,296起", location: "國內線2F", desc: "【2025排隊王】生食感起司巧克力，每天早上大排長龍，必搶。", image: null },
+                    { name: "Kinotoya 現烤起司塔 (焼きたてチーズタルト)", price: "¥220/個", location: "國內線2F", desc: "機場員工票選No.1，塔皮酥脆內餡流心。還有「極上牛乳霜淇淋」必吃。", image: null },
+                    { name: "美瑛選果 - 玉米麵包 (びえいのコーンぱん)", price: "¥1,300/5入", location: "國內線2F", desc: "【超限量】完全不加水，只用玉米和麵粉製作，出爐即秒殺。", image: null },
+                    { name: "PRESS BUTTER SAND 北海道限定", price: "¥1,242起", location: "國內線2F", desc: "限定「白巧克力焦糖」口味，使用北海道產奶油，機場限定。", image: null },
+                    { name: "Caramel Kitchen - 現做焦糖牛奶糖 (キャラメルキッチン)", price: "¥1,080起", location: "國內線2F", desc: "固力果(Glico)高級版，店內銅鍋現煮，只有新千歲機場有。", image: null },
+                    { name: "Royce 生巧克力 (生チョコレート)", price: "¥864", location: "免稅店各處", desc: "經典不敗，需加購保冷袋 (¥100)。", image: null },
+                    { name: "Jaga Pokkuru 薯條三兄弟 (じゃがポックル)", price: "¥1,100", location: "免稅店各處", desc: "人手一盒的經典，北海道馬鈴薯製作，酥脆涮嘴。", image: null },
+                    { name: "Pokemon Store - 機長皮卡丘 (パイロットピカチュウ)", price: "¥1,760", location: "國內線2F", desc: "穿著新千歲機場制服的限定皮卡丘。", image: null },
+                    { name: "北菓樓 夢不思議泡芙 (夢不思議)", price: "¥250", location: "國內線2F", desc: "【現場吃】外皮酥脆，卡士達醬爆漿，CP值超高。", image: null },
+                    { name: "LeTAO 色內通夾心餅乾 (色内通りフロマージュ)", price: "¥1,080", location: "免稅店", desc: "起司味濃郁的貓舌餅乾，比蛋糕好攜帶，送禮首選。", image: null },
                 ],
-                "伴手禮": [{ name: "六花亭", price: "¥750", location: "小樽", desc: "蘭姆葡萄夾心。", image: null }],
-                "美妝": [{ name: "LuLuLun 面膜", price: "¥1,760", location: "藥妝", desc: "北海道限定薰衣草。", image: null }],
-                "藥物": [{ name: "合利他命 EX", price: "¥5,980", location: "藥妝", desc: "價差大必買。", image: null }],
-                "3C": [{ name: "Panasonic 吹風機", price: "¥38,000", location: "Bic Camera", desc: "最新型號。", image: null }],
-                "小物": [{ name: "馬油", price: "¥3,300", location: "昭和新山", desc: "橘色罐裝。", image: null }]
+                "伴手禮": [
+                    { name: "若狹芋本舖 - 北海道炸薯條 (北海道じゃがッキー)", price: "¥540", location: "洞爺湖", desc: "口感酥脆帶有昆布鮮味，隱藏版人氣王。", image: null },
+                    { name: "若狹芋本舖 - 鮮奶油紅豆炸甜甜圈 (あんドーナツ)", price: "¥200", location: "洞爺湖本店", desc: "內餡有鮮奶油，熱熱吃超讚。", image: null },
+                    { name: "昭和新山 - 哈密瓜果凍 (ピュアゼリー)", price: "¥540", location: "熊牧場", desc: "口感最接近真實哈密瓜的果凍。", image: null },
+                    { name: "Petite Merveille - 一口起司蛋糕 (メルチーズ)", price: "¥1,600/8入", location: "函館/金森", desc: "口感比Snaffle's更綿密，函館雙雄之一。", image: null },
+                    { name: "Snaffle's - 蒸氣蛋糕 (蒸し焼きショコラ)", price: "¥1,500", location: "函館", desc: "口感蓬鬆，常溫好攜帶。", image: null },
+                    { name: "六花亭 - 葡萄奶油夾心 (マルセイバターサンド)", price: "¥750/5入", location: "小樽/各處", desc: "經典必買，蘭姆葡萄香氣濃郁。", image: null },
+                    { name: "六花亭 - 卡布奇諾霜餅 (霜だたみ)", price: "¥550", location: "小樽/各處", desc: "內行人的愛，口感像酥脆的千層派。", image: null },
+                    { name: "LeTAO - 雙層起司蛋糕 (ドゥーブルフロマージュ)", price: "¥2,000", location: "小樽/機場", desc: "入口即化，建議回國前在機場買保冷袋。", image: null },
+                    { name: "LeTAO - 紅茶巧克力夾心 (テノワール)", price: "¥1,000", location: "小樽", desc: "茶香濃郁，常溫可帶回國 (替代需冷藏的蛋糕)。", image: null },
+                    { name: "かま栄 (Kamaei) - 炸魚板 (ひら天/パンロール)", price: "¥237", location: "小樽", desc: "【必吃鹹食】現炸平天或麵包捲，商店街末端。", image: null },
+                    { name: "北菓樓 - 夢不思議泡芙 (夢不思議)", price: "¥250/個", location: "新千歲/小樽", desc: "外皮酥脆，內餡卡士達醬爆漿。", image: null },
+                    { name: "北菓樓 札幌本館 - 北海道廳立圖書館餅乾", price: "¥1,200", location: "札幌本館", desc: "安藤忠雄設計本館限定，書本造型包裝。", image: null },
+                    { name: "藤崎山葵園 - 鬼漬 (鬼漬け)", price: "¥650", location: "登別溫泉街", desc: "山葵醃漬的漬物，名字應景，下酒配飯皆宜。", image: null },
+                    { name: "登別大格蘭飯店 - 鬼之金棒 (鬼の金棒)", price: "¥1,000", location: "登別", desc: "像鬼的狼牙棒造型的長條甜點。", image: null },
+                    { name: "佐藤水産 - 鮭魚路易漬 (鮭のルイベ漬)", price: "¥1,450", location: "札幌/機場", desc: "最高級海鮮伴手禮，鮭魚醬油漬，長輩超愛。", image: null },
+                    { name: "どんぐり (DONGURI) - 竹輪麵包 (ちくわパン)", price: "¥194", location: "札幌大通", desc: "札幌靈魂美食！麵包包整根竹輪與鮪魚沙拉。", image: null },
+                    { name: "乾干貝 (帆立貝柱)", price: "¥3,000起", location: "函館朝市", desc: "煮湯、當零食都適合，越嚼越香。", image: null },
+                    { name: "深海鮫魚油", price: "¥18,000", location: "光伸/亞歷山大", desc: "團客必推，是否購買見仁見智。", image: null },
+                    { name: "藥王 (痛寶精)", price: "¥28,000", location: "光伸/亞歷山大", desc: "針對關節痛，單價極高。", image: null },
+                ],
+                "小物": [
+                    { name: "Lucky Pierrot - 幸運薯條馬克杯 (ラッキーピエロ)", price: "¥800", location: "函館", desc: "函館限定小丑漢堡周邊，非常有特色。", image: null },
+                    { name: "昭和新山 藥用馬油", price: "¥3,300", location: "熊牧場", desc: "橘色罐裝，保濕效果極佳，長輩最愛。", image: null },
+                    { name: "小樽音樂盒", price: "¥3,000起", location: "音樂盒堂", desc: "精緻浪漫，款式多樣，具紀念價值。", image: null },
+                    { name: "洞爺湖 木刀", price: "¥1,500起", location: "洞爺湖", desc: "動漫迷必買，可刻字。", image: null },
+                    { name: "北海道限定 扭蛋", price: "¥300起", location: "機場/狸小路", desc: "雪初音、北海道動物系列。", image: null },
+                    { name: "登別溫泉入浴劑", price: "¥1,200", location: "登別", desc: "在家也能享受硫磺泉。", image: null },
+                ],
+                "美妝": [
+                    { name: "LuLuLun 北海道限定面膜", price: "¥1,760/盒", location: "藥妝店/機場", desc: "薰衣草/哈密瓜限定香氣，7片x5袋入，送禮首選。", image: null },
+                    { name: "SHIRO 皂香香水", price: "¥4,180", location: "札幌Stella Place", desc: "北海道發跡的天然系品牌，味道清冷高級。", image: null },
+                    { name: "HABA 純海角鯊精純液", price: "¥1,540起", location: "百貨/藥妝", desc: "北海道無添加老牌，一滴鎖水，價格約台灣6折。", image: null },
+                    { name: "北海道純馬油本舖 馬油", price: "¥1,100", location: "狸小路/機場", desc: "100%純馬油，滋潤度極高，適合乾燥肌膚。", image: null },
+                    { name: "Curel 珂潤 保濕乳霜", price: "¥2,500", location: "大國/松本清", desc: "乾燥敏感肌救星，價格比台灣甜很多。", image: null },
+                ],
+                "藥物": [
+                    { name: "合利他命 EX Plus", price: "¥5,980", location: "藥妝店", desc: "緩解眼睛疲勞、肩頸僵硬，價差大必買。", image: null },
+                    { name: "EVE 止痛藥", price: "¥798", location: "藥妝店", desc: "針對頭痛生理痛，藍色包裝不嗜睡。", image: null },
+                    { name: "大正百保能感冒藥", price: "¥1,380", location: "藥妝店", desc: "粉末狀，感冒初期服用效果佳。", image: null },
+                    { name: "Wakamoto 若元錠", price: "¥1,880", location: "藥妝店", desc: "腸胃藥，幫助消化，家庭常備。", image: null },
+                    { name: "曼秀雷敦 AD乳膏", price: "¥700", location: "藥妝店", desc: "止然消炎，適合乾燥發癢肌膚。", image: null },
+                ],
+                "3C": [
+                    { name: "Panasonic吹風機", price: "¥38,000", location: "Bic Camera", desc: "最新型號 NA0J，保濕效果更強。", image: null },
+                    { name: "Sony 降噪耳機", price: "¥40,000", location: "Yodobashi", desc: "WH-1000XM5，降噪效果頂級，適合搭機。", image: null },
+                    { name: "Nintendo Switch 遊戲片", price: "¥5,000起", location: "Bic Camera", desc: "比台灣便宜，部分有中文版。", image: null },
+                    { name: "富士拍立得底片", price: "¥800起", location: "Yodobashi", desc: "日本限定款式，價格較優惠。", image: null },
+                ],
             }));
 
-            const [cards, setCards] = useState(() => safeJsonParse('cards', [
+            // ★★★ 核心修改：定義預設卡片資料常數 (Fix 2) ★★★
+            const DEFAULT_CARDS_DATA = [
                 { id: 'jihe', name: '聯邦吉鶴卡', reward: '最高 7% (Apple Pay)', type: 'credit', color: 'bg-gradient-to-r from-rose-700 to-pink-900', limit: 100000, tags: ['指定 7%', 'AP 4%', '一般 2.5%'], desc: "★指定11大通路 7% (需Apple Pay，低消100台幣)：\n7-11、全家、Lawson、Bic Camera、Yodobashi、唐吉訶德、永旺(AEON)、大丸、三越、高島屋、迪士尼、環球影城。\n★Apple Pay 4%：1.5%加碼上限 NT$600 (刷約4萬)。" },
-                { id: 'kumamon', name: '玉山熊本熊卡', reward: '指定 8.5% / PayPay 5%', type: 'credit', color: 'bg-gradient-to-r from-slate-700 to-slate-900', limit: 41500, tags: ['Suica 8.5%', '藥妝 8.5%', '唐吉 8.5%'], desc: "★指定通路 8.5%：Bic Camera、Yodobashi、松本清、唐吉訶德、大國藥妝、Uniqlo、GU、Suica儲值。(加碼上限 NT$500，刷約 NT$8,333)。\n★一般消費：2% (雙幣卡免收1.5%手續費)。" },
-                { id: 'dbs_eco', name: '星展 eco 永續卡', reward: '實體卡 5% (上限 1.5萬)', type: 'credit', color: 'bg-gradient-to-r from-emerald-600 to-emerald-800', limit: 75000, tags: ['實體卡 5%', '無腦刷', '歐美日韓'], desc: "【2026海外實體卡神卡】\n日本/韓國/新/泰/美/歐實體刷卡享 5% (1%無上限+4%加碼)。\n加碼月上限 NT$600 (刷約 NT$15,000)。超過後回饋 1% 無上限。" },
+                { id: 'kumamon', name: '玉山熊本熊卡', reward: '指定 8.5% / PayPay 5%', type: 'credit', color: 'bg-gradient-to-r from-slate-700 to-slate-900', limit: 41500, tags: ['Suica 8.5%', '藥妝 8.5%', '唐吉 8.5%', 'Uniqlo 8.5%'], desc: "★指定通路 8.5%：Bic Camera、Yodobashi、松本清、唐吉訶德、大國藥妝、Tomod's、Uniqlo、GU、無印良品、Suica儲值。(加碼上限 NT$500，刷約 NT$8,333)。\n★一般消費：2% (雙幣卡免收1.5%手續費)。" },
+                { id: 'dbs_eco', name: '星展 eco 永續卡', reward: '實體卡 5% (上限 1.5萬)', type: 'credit', color: 'bg-gradient-to-r from-emerald-600 to-emerald-800', limit: 75000, tags: ['實體卡 5%', '無腦刷', '歐美日韓'], desc: "【2026海外實體卡神卡】\n日本/韓國/新/泰/美/歐實體刷卡享 5% (1%無上限+4%加碼)。\n加碼月上限 NT$600 (刷約 NT$15,000)。超過後回饋 1% 無上限。無腦刷首選。" },
                 { id: 'unicard', name: '玉山 Unicard (Up選)', reward: 'Up選 4.5% (上限 14萬)', type: 'credit', color: 'bg-gradient-to-r from-violet-600 to-fuchsia-800', limit: 710000, tags: ['大額 > 3萬', '精品/家電', '4.5%'], desc: "【已訂閱Up選方案 (月費 NT$99)】\n百大通路(含日本) 4.5% 回饋。回饋上限 5,000點 (刷約 NT$14.2萬)。\n攻略：單月日本消費 > 3萬台幣時，回饋率勝過吉鶴卡。適合：精品、高單價家電、大量採購。" },
                 { id: 'suica', name: 'Mobile Suica', reward: '交通/超商/販賣機', type: 'transport', color: 'bg-gradient-to-r from-emerald-800 to-emerald-900', limit: 0, tags: ['交通', '販賣機', '超商'], desc: "建議綁定熊本熊卡 (8.5%) 或吉鶴卡 (0%回饋但方便)。" },
                 { id: 'cash', name: '日幣現金', reward: '剩餘 ¥21,622', type: 'cash', color: 'bg-gradient-to-r from-amber-700 to-amber-900', limit: 0, tags: ['老店', '路邊攤'], desc: "主要用於不收信用卡的傳統店家、投幣機、部分門票。" }
-            ]));
+            ];
+
+            // ★★★ 核心修改：初始化時進行資料合併 (Data Merge) ★★★
+            const [cards, setCards] = useState(() => {
+                const saved = safeJsonParse('cards', []);
+                if (!saved || saved.length === 0) return DEFAULT_CARDS_DATA;
+                
+                // 將舊資料與新預設資料合併，強制更新 desc 和 tags
+                return saved.map(card => {
+                    const defaultCard = DEFAULT_CARDS_DATA.find(d => d.id === card.id);
+                    if (defaultCard) {
+                        return {
+                            ...card,
+                            desc: defaultCard.desc, // 強制更新攻略
+                            tags: defaultCard.tags, // 強制更新標籤
+                            // 可以選擇性更新 reward 或 name，但保留使用者可能修改過的 limit 或 color
+                        };
+                    }
+                    return card;
+                });
+            });
 
             // Persist Data
             useEffect(() => { localStorage.setItem('expenses', JSON.stringify(expenses)); }, [expenses]);
@@ -494,7 +612,8 @@
                 return expenses.filter(exp => 
                     exp.item.toLowerCase().includes(term) || 
                     (exp.note && exp.note.toLowerCase().includes(term)) ||
-                    (cards.find(c => c.id === exp.cardId)?.name || '').toLowerCase().includes(term)
+                    (cards.find(c => c.id === exp.cardId)?.name || '').toLowerCase().includes(term) ||
+                    (exp.forWho && exp.forWho.toLowerCase().includes(term)) // Include 'forWho' in search
                 );
             }, [expenses, searchTerm, cards]);
 
@@ -520,8 +639,8 @@
                     selectedCardId = rec ? rec.id : 'cash';
                 }
                 const expense = { id: Date.now(), ...newExpense, cardId: selectedCardId, cost: Number(newExpense.cost) };
-                setExpenses([expense, ...expenses]);
-                setNewExpense({ ...newExpense, item: '', cost: '', category: 'shopping', cardId: '', note: '' });
+                setExpenses([expense, ...expenses]); // Add to top
+                setNewExpense({ ...newExpense, item: '', cost: '', category: 'shopping', cardId: '', note: '', forWho: '個人' });
                 showToast('記帳成功');
             };
             
@@ -544,6 +663,7 @@
                     if (!card.limit || card.limit === 0) return true;
                     return ((currentSpendMap[cardId] || 0) + costNum) <= card.limit;
                 };
+
                 const isKumamon = /bic|yodo|donki|唐吉|uniqlo|gu|muji|無印|松本清|大國|藥妝/.test(lowerItem);
                 const isJihe = /bic|yodo|donki|唐吉|三越|高島屋|永旺|aeon|edion|大丸|迪士尼|環球/.test(lowerItem);
                 
@@ -648,7 +768,6 @@
                 });
             };
 
-            // --- 新增：連結編輯功能 ---
             const handleAddOrUpdateLink = () => {
                 if (!newLinkData.url) { showToast('請輸入網址'); return; }
                 if (editingLinkId) {
@@ -665,6 +784,12 @@
             const handleEditLink = (link) => {
                 setNewLinkData({ title: link.title, url: link.url });
                 setEditingLinkId(link.id);
+            };
+
+            // Added: Cancel Edit Link
+            const handleCancelEditLink = () => {
+                setNewLinkData({ title: '', url: '' });
+                setEditingLinkId(null);
             };
 
             const handleDeleteLink = (id) => {
@@ -790,12 +915,35 @@
                                             <input type="date" className="w-1/3 p-3 bg-white rounded-lg text-sm text-[#2E4057] font-mono appearance-none" value={newExpense.date} onChange={e=>setNewExpense({...newExpense, date: e.target.value})} />
                                             <input type="text" placeholder="項目名稱" className="w-2/3 p-3 bg-white rounded-lg text-sm text-[#2E4057]" value={newExpense.item} onChange={e=>setNewExpense({...newExpense, item: e.target.value})} />
                                         </div>
-                                        <div className="flex gap-3">
+                                        <div className="flex gap-3 relative">
                                             <input type="number" placeholder="¥ Price" className="flex-1 p-4 bg-white rounded-lg text-sm text-[#2E4057] font-mono" value={newExpense.cost} onChange={e=>setNewExpense({...newExpense, cost: e.target.value})} />
+                                            <button 
+                                                className="absolute right-[36%] top-2 p-2 text-[#2E4057] opacity-50 hover:opacity-100" 
+                                                onClick={() => setShowCalculator(true)}
+                                            >
+                                                <Calculator size={18} />
+                                            </button>
                                             <select className="w-[35%] p-4 bg-white rounded-lg text-sm text-[#2E4057]" value={newExpense.category} onChange={e=>setNewExpense({...newExpense, category: e.target.value})}>
                                                 <option value="shopping">購物</option><option value="dining">美食</option><option value="transport">交通</option><option value="other">其他</option>
                                             </select>
                                         </div>
+                                        
+                                        {/* NEW: Who is this for? */}
+                                        <div className="flex gap-2 items-center overflow-x-auto no-scrollbar py-1">
+                                            <span className="text-xs text-[#819FA1] shrink-0 font-bold mr-1">對象:</span>
+                                            {whoOptions.map(who => (
+                                                <button 
+                                                    key={who}
+                                                    onClick={() => setNewExpense({...newExpense, forWho: who})}
+                                                    className={`px-3 py-1 rounded-full text-xs transition-all border ${newExpense.forWho === who ? whoColors[who] + ' border-transparent shadow-sm' : 'bg-white text-[#819FA1] border-[#819FA1]/30'}`}
+                                                >
+                                                    {who}
+                                                </button>
+                                            ))}
+                                        </div>
+
+                                        <input type="text" placeholder="備註/明細" className="w-full p-3 bg-white rounded-lg text-sm text-[#2E4057] border border-[#819FA1]/20" value={newExpense.note} onChange={e=>setNewExpense({...newExpense, note: e.target.value})} />
+
                                         <div className={`bg-white p-4 rounded-lg flex items-center justify-between shadow-sm ${currentRecommendation.isHighlight?'ring-2 ring-[#F4B942] bg-[#F4B942]/5':''}`}>
                                             <div className="flex items-center gap-3">
                                                 <CreditCard size={16} className="text-[#2E4057]" />
@@ -821,7 +969,7 @@
                                     <div className="mt-6 pt-6 border-t border-[#819FA1]/20">
                                         <div className="relative">
                                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#819FA1]" size={16} />
-                                            <input type="text" placeholder="搜尋消費紀錄 (項目/類別)..." value={searchTerm} onChange={e=>setSearchTerm(e.target.value)} className="w-full pl-10 p-3 bg-white rounded-xl border border-[#819FA1]/10 text-sm text-[#2E4057] focus:outline-none focus:border-[#2E4057]" />
+                                            <input type="text" placeholder="搜尋消費紀錄 (項目/類別/對象)..." value={searchTerm} onChange={e=>setSearchTerm(e.target.value)} className="w-full pl-10 p-3 bg-white rounded-xl border border-[#819FA1]/10 text-sm text-[#2E4057] focus:outline-none focus:border-[#2E4057]" />
                                         </div>
                                     </div>
                                 </Card>
@@ -832,14 +980,18 @@
                                         filteredExpenses.map(exp => {
                                             const cardName = cards.find(c => c.id === exp.cardId)?.name || '未知';
                                             return (
-                                                <div key={exp.id} className="bg-white p-3 rounded-xl border border-[#819FA1]/10 flex justify-between items-center shadow-sm">
-                                                    <div className="flex-1">
+                                                <div key={exp.id} className="bg-white p-3 rounded-xl border border-[#819FA1]/10 flex justify-between items-center shadow-sm relative overflow-hidden">
+                                                    <div className={`absolute left-0 top-0 bottom-0 w-1 ${whoColors[exp.forWho || '個人'].split(' ')[0].replace('bg-', 'bg-').replace('100', '400')}`}></div>
+                                                    <div className="flex-1 pl-2">
                                                         <div className="flex items-center gap-2 mb-1">
                                                             <span className="text-[10px] font-mono text-[#819FA1] bg-[#2E4057]/5 px-1.5 py-0.5 rounded">{exp.date || '----/--/--'}</span>
-                                                            <span className="text-[10px] font-bold text-[#F4B942] uppercase tracking-wider">{exp.category}</span>
+                                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${whoColors[exp.forWho || '個人']}`}>{exp.forWho || '個人'}</span>
                                                         </div>
                                                         <div className="font-bold text-[#2E4057] text-sm">{exp.item}</div>
-                                                        <div className="text-[10px] text-[#819FA1] mt-0.5">{cardName}</div>
+                                                        <div className="text-[10px] text-[#819FA1] mt-0.5 flex gap-2">
+                                                            <span>{cardName}</span>
+                                                            {exp.note && <span className="text-[#2E4057]/70 border-l border-[#819FA1]/30 pl-2 truncate max-w-[120px]">{exp.note}</span>}
+                                                        </div>
                                                     </div>
                                                     <div className="text-right">
                                                         <div className="font-mono font-bold text-[#2E4057]">¥{exp.cost.toLocaleString()}</div>
@@ -898,10 +1050,13 @@
                                                 <span className="text-xs opacity-80">Spent</span>
                                                 <div className="text-right"><div className="font-mono text-xl font-bold">¥{spend.toLocaleString()}</div><div className="text-[9px] opacity-70">≈ NT${Math.round(spend*EXCHANGE_RATE).toLocaleString()}</div></div>
                                             </div>
+                                            {card.limit > 0 && <div className="mt-1 text-[9px] text-right text-white/60">上限: ¥{card.limit.toLocaleString()} (約 NT${Math.round(card.limit * EXCHANGE_RATE).toLocaleString()})</div>}
                                             {card.limit > 0 && progress >= 100 && <div className="mt-2 bg-red-500/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1"><AlertCircle size={10}/> 已達上限</div>}
+                                            {/* ★★★ 核心修改：增加標題讓攻略更明顯 ★★★ */}
                                             {card.desc && (
-                                                <div className="mt-4 text-[10px] text-white/70 bg-black/30 p-3 rounded-lg backdrop-blur-md border border-white/5 leading-relaxed whitespace-pre-wrap relative z-10">
-                                                    {card.desc}
+                                                <div className="mt-4 bg-black/30 p-3 rounded-lg backdrop-blur-md border border-white/5 relative z-10">
+                                                    <div className="text-[10px] font-bold text-[#F4B942] mb-1 flex items-center gap-1"><Lightbulb size={10}/> 刷卡攻略</div>
+                                                    <div className="text-[10px] text-white/80 leading-relaxed whitespace-pre-wrap">{card.desc}</div>
                                                 </div>
                                             )}
                                         </div>
@@ -914,14 +1069,33 @@
                         {activeTab === 'shopping' && (
                              <div className="space-y-4 pb-20">
                                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">{Object.keys(shoppingList).map(cat => <button key={cat} onClick={()=>setActiveShoppingTab(cat)} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all border ${activeShoppingTab===cat?'bg-[#F4B942] text-[#2E4057]':'bg-white text-[#819FA1]'}`}>{cat}</button>)}</div>
+                                
+                                {/* Location Filter */}
+                                <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar pl-1">
+                                    <button onClick={()=>setSelectedLocation('全部')} className={`flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold border transition-all ${selectedLocation==='全部'?'bg-[#2E4057] text-white border-[#2E4057]':'bg-white text-[#819FA1] border-[#819FA1]/30'}`}>
+                                        <MapPin size={10}/> 全部
+                                    </button>
+                                    {['洞爺湖','函館','登別','小樽','札幌','機場'].map(loc => (
+                                        <button key={loc} onClick={()=>setSelectedLocation(loc)} className={`flex-shrink-0 px-3 py-1 rounded-full text-[10px] font-bold border transition-all ${selectedLocation===loc?'bg-[#2E4057] text-white border-[#2E4057]':'bg-white text-[#819FA1] border-[#819FA1]/30'}`}>
+                                            {loc}
+                                        </button>
+                                    ))}
+                                </div>
+
                                 <div className="flex justify-end mb-2"><button onClick={()=>{setNewItemData({name:'',price:'',location:'',desc:'',image:null});setEditingShoppingIndex(null);setShowAddItemModal(true)}} className="bg-[#2E4057] text-white p-2 rounded-full shadow-lg"><Plus size={20}/></button></div>
-                                {(shoppingList[activeShoppingTab]||[]).map((item,i) => (
+                                
+                                {(shoppingList[activeShoppingTab]||[])
+                                    .filter(item => selectedLocation === '全部' || (item.location && item.location.includes(selectedLocation.replace('機場', '新千歲'))))
+                                    .map((item,i) => (
                                     <div key={i} className="bg-white p-3 rounded-xl flex gap-3 shadow-sm" onClick={()=>{setNewItemData(item);setEditingShoppingIndex(i);setShowAddItemModal(true)}}>
                                         {item.image && <img src={item.image} className="w-16 h-16 rounded object-cover shrink-0" onClick={e=>{e.stopPropagation();setViewImage(item.image)}}/>}
                                         <div className="flex-1 min-w-0"><h4 className="font-bold text-[#2E4057] truncate">{item.name}</h4><p className="text-xs text-[#819FA1] truncate">{item.desc}</p><div className="flex justify-between mt-1"><span className="text-xs font-mono text-[#D97706]">{item.price}</span><span className="text-[10px] text-[#819FA1]">{item.location}</span></div></div>
                                         <button onClick={e=>{e.stopPropagation();handleDeleteShoppingItem(activeShoppingTab,i)}} className="text-red-300"><Trash2 size={16}/></button>
                                     </div>
                                 ))}
+                                {(shoppingList[activeShoppingTab]||[]).filter(item => selectedLocation === '全部' || (item.location && item.location.includes(selectedLocation.replace('機場', '新千歲')))).length === 0 && (
+                                    <div className="text-center text-[#819FA1] text-xs py-8">此地點尚無推薦清單</div>
+                                )}
                              </div>
                         )}
 
@@ -929,14 +1103,32 @@
                         {activeTab === 'links' && (
                              <div className="space-y-4">
                                 <div className="flex gap-2 mb-4">
-                                    <input type="text" placeholder="標題" className="flex-1 p-3 rounded-lg border text-sm" value={newLinkData.title} onChange={e=>setNewLinkData({...newLinkData, title:e.target.value})}/>
-                                    <input type="text" placeholder="網址" className="flex-1 p-3 rounded-lg border text-sm" value={newLinkData.url} onChange={e=>setNewLinkData({...newLinkData, url:e.target.value})}/>
-                                    <button onClick={handleAddOrUpdateLink} className="bg-[#2E4057] text-white p-3 rounded-lg shadow-lg">
+                                    <input 
+                                        type="text" 
+                                        placeholder={editingLinkId ? "修改標題..." : "標題"} 
+                                        className={`flex-1 p-3 rounded-lg border text-sm transition-colors ${editingLinkId ? 'bg-amber-50 border-amber-300' : 'bg-white'}`} 
+                                        value={newLinkData.title} 
+                                        onChange={e=>setNewLinkData({...newLinkData, title:e.target.value})}
+                                    />
+                                    <input 
+                                        type="text" 
+                                        placeholder={editingLinkId ? "修改網址..." : "網址"} 
+                                        className={`flex-1 p-3 rounded-lg border text-sm transition-colors ${editingLinkId ? 'bg-amber-50 border-amber-300' : 'bg-white'}`} 
+                                        value={newLinkData.url} 
+                                        onChange={e=>setNewLinkData({...newLinkData, url:e.target.value})}
+                                    />
+                                    <button onClick={handleAddOrUpdateLink} className={`bg-[#2E4057] text-white p-3 rounded-lg shadow-lg ${editingLinkId ? 'ring-2 ring-amber-400' : ''}`}>
                                         {editingLinkId ? <Save size={20}/> : <Plus size={20}/>}
                                     </button>
+                                    {/* Added: Cancel Edit Button */}
+                                    {editingLinkId && (
+                                        <button onClick={handleCancelEditLink} className="bg-red-50 text-red-400 p-3 rounded-lg border border-red-200">
+                                            <X size={20}/>
+                                        </button>
+                                    )}
                                 </div>
                                 {savedLinks.map(l => (
-                                    <div key={l.id} className="bg-white p-4 rounded-xl flex justify-between items-center shadow-sm">
+                                    <div key={l.id} className={`p-4 rounded-xl flex justify-between items-center shadow-sm transition-all ${editingLinkId === l.id ? 'bg-amber-50 border-amber-300 ring-1 ring-amber-300' : 'bg-white border border-[#819FA1]/20'}`}>
                                         <div className="flex items-center gap-3 overflow-hidden">
                                             <div className="bg-[#F4B942]/10 p-2 rounded-full text-[#F4B942]"><LinkIcon size={16}/></div>
                                             <div className="truncate">
@@ -976,6 +1168,13 @@
                     <Modal isOpen={promptModal.open} title={promptModal.title} onClose={()=>setPromptModal({...promptModal, open:false})} actions={<><button onClick={()=>setPromptModal({...promptModal,open:false})} className="px-4 py-2 text-gray-500">取消</button><button onClick={()=>{promptModal.onConfirm(promptModal.value);setPromptModal({...promptModal,open:false})}} className="px-4 py-2 bg-[#2E4057] text-[#F4B942] rounded">確定</button></>}>
                         <input type="number" className="w-full p-3 border rounded font-mono" value={promptModal.value} onChange={e=>setPromptModal({...promptModal, value:e.target.value})} autoFocus />
                     </Modal>
+
+                    <CalculatorModal 
+                        isOpen={showCalculator} 
+                        onClose={() => setShowCalculator(false)} 
+                        initialValue={newExpense.cost}
+                        onConfirm={(val) => setNewExpense({...newExpense, cost: val})}
+                    />
 
                     {/* Add Item Modal */}
                     <Modal isOpen={showAddItemModal} title={editingShoppingIndex!==null?"編輯商品":"新增商品"} onClose={()=>setShowAddItemModal(false)}>
