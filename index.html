@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>北海道旅遊助手</title>
+    <title>北海道旅遊助手 (最終完美版)</title>
     
     <!-- ★★★ APP ICON 設定 (已幫您加入) ★★★ -->
-    <!-- 請確保 icon.svg 和 icon.png 放在同一個資料夾內 -->
     <link rel="icon" type="image/svg+xml" href="./icon.svg">
     <link rel="apple-touch-icon" href="./icon.png">
-    <!-- ★★★ 設定結束 ★★★ -->
     
     <!-- 1. 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,7 +35,6 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-        /* 載入動畫 */
         .loading-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #2E4057;
@@ -45,8 +42,6 @@
             z-index: 9999; color: #F4B942; font-size: 1.5rem; font-weight: bold;
         }
         body:has(#root:not(:empty)) .loading-screen { display: none; }
-        
-        /* 簡單的淡入動畫 */
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
         .modal-animate { animation: fadeIn 0.2s ease-out forwards; }
     </style>
@@ -66,14 +61,13 @@
             BedDouble, Loader2, Coffee, UtensilsCrossed, PlaneTakeoff, PlaneLanding, Bus, ChefHat, 
             Lightbulb, ChevronDown, Thermometer, Image as ImageIcon, Upload, Smartphone, 
             Store, Banknote, Zap, RotateCw, AlertCircle, Trees, Building2, LandPlot,
-            Link as LinkIcon, ExternalLink, Bookmark, Search
+            Link as LinkIcon, ExternalLink, Bookmark, Search, Save
         } from 'lucide-react';
 
         const HideScrollbarStyle = () => (
             <style>{`.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
         );
 
-        // --- 安全的 JSON 解析 ---
         const safeJsonParse = (key, fallback) => {
             try {
                 const saved = localStorage.getItem(key);
@@ -116,7 +110,7 @@
                     { name: '昭和新山', type: 'outdoor', busTime: '約 1.5 小時', desc: '活火山景觀。', food: '哈密瓜冰淇淋', souvenir: '藥用馬油' },
                     { name: '昭和新山熊牧場', type: 'outdoor', desc: '近距離觀察棕熊。', food: '熊餅乾', game: '扭蛋機' },
                     { name: '洞爺湖溫泉', type: 'outdoor', busTime: '約 15 分', desc: '不凍湖，晚上有燈飾。', food: 'Wakasaimo甜點' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '洞爺湖太陽宮度假飯店。' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '洞爺湖太陽宮度假飯店。\n📍 地址：日本北海道有珠郡壯瞥町洞爺湖溫泉 7-1' }
                 ]
             },
             {
@@ -132,7 +126,7 @@
                     { name: '百年女子修道院', type: 'outdoor', busTime: '約 50 分', desc: '莊嚴紅磚建築。', food: '市民之森牛奶霜淇淋', souvenir: '瑪德蓮蛋糕' },
                     { name: '金森倉庫群', type: 'mixed', busTime: '約 30 分', desc: '明治時代紅磚倉庫。', food: 'Snaffle\'s 起司蛋糕' },
                     { name: '函館纜車', type: 'outdoor', busTime: '約 15 分', desc: '世界三大夜景。', souvenir: '限定磁鐵' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '函館湯之川溫泉。' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '函館湯之川溫泉。\n📍 地址：日本北海道函館市湯川町 1 丁目 3-8' }
                 ]
             },
             {
@@ -148,7 +142,7 @@
                     { name: '登別地獄谷', type: 'outdoor', busTime: '約 15 分', desc: '火山地形景觀。' },
                     { name: '湯澤神社', type: 'outdoor', desc: '溫泉守護神。', souvenir: '溫泉御守' },
                     { name: '登別溫泉街', type: 'outdoor', desc: '閻魔堂變臉秀。', food: '閻魔炒麵', tips: '變臉秀有固定時間。' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '登別溫泉。' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '登別溫泉。\n📍 地址：日本北海道登別市登別溫泉町 65' }
                 ]
             },
             {
@@ -166,7 +160,7 @@
                     { name: '音樂盒堂', type: 'indoor', desc: '各式音樂盒。' },
                     { name: '大通公園', type: 'outdoor', busTime: '約 50 分', desc: '白色燈樹節。' },
                     { name: '狸小路商店街', type: 'mixed', desc: '藥妝與唐吉軻德。', food: '湯咖哩', souvenir: '藥妝' },
-                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '札幌公園精品酒店。' }
+                    { name: '抵達飯店', type: 'indoor', isHotel: true, desc: '札幌公園精品酒店。\n📍 地址：日本北海道札幌市中央區南 9 條西 2 丁目' }
                 ]
             },
             {
@@ -394,7 +388,7 @@
                             {spot.busTime && <div className="flex items-center gap-1.5 text-[#2E4057] bg-white/50 px-2 py-1 rounded w-fit text-[10px] mt-0.5 border border-[#819FA1]/10"><Bus size={12} className="shrink-0"/><span>車程 {spot.busTime.replace('約','').trim()}</span></div>}
                         </div>
                     </div>
-                    <div className={`grid transition-all duration-300 ease-in-out ${isExpanded ? 'grid-rows-[1fr] opacity-100 mb-4' : 'grid-rows-[0fr] opacity-0'}`}><div className="overflow-hidden"><p className="text-sm text-[#2E4057]/80 font-medium leading-relaxed mb-3">{spot.desc}</p><div className="space-y-3">{spot.schedule && <div className="bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><p className="text-xs font-bold text-[#2E4057] mb-2">表演時間表</p>{spot.schedule.map((sch, i) => <div key={i} className="flex justify-between text-xs text-[#819FA1] border-b border-dashed border-[#819FA1]/10 last:border-0 py-1"><span>{sch.name}</span><span className="font-mono">{sch.time}</span></div>)}</div>}{spot.food&&spot.food!=='-'&&<div className="flex items-start gap-3 bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><div className="bg-[#2E4057]/10 p-1.5 rounded text-[#2E4057] shrink-0 border border-[#2E4057]/10"><Utensils size={14}/></div><div className="flex-1"><span className="text-xs text-[#2E4057] font-medium">{spot.food}</span></div></div>}{spot.souvenir&&spot.souvenir!=='-'&&<div className="flex items-start gap-3 bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><div className="bg-[#2E4057]/10 p-1.5 rounded text-[#2E4057] shrink-0 border border-[#2E4057]/10"><ShoppingBag size={14}/></div><div className="flex-1"><span className="text-xs text-[#2E4057] font-medium">{spot.souvenir}</span></div></div>}{spot.game&&spot.game!=='-'&&<div className="flex items-start gap-3 bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><div className="bg-[#2E4057]/10 p-1.5 rounded text-[#2E4057] shrink-0 border border-[#2E4057]/10"><Gamepad2 size={14}/></div><div className="flex-1"><span className="text-xs text-[#2E4057] font-medium">{spot.game}</span></div></div>}{spot.tips&&spot.tips!=='-'&&<div className="flex items-start gap-3 bg-red-50 p-3 rounded-lg border border-red-100 shadow-sm"><div className="text-red-400 shrink-0 mt-0.5"><AlertTriangle size={14}/></div><div className="flex-1"><span className="text-xs text-red-600 font-medium">{spot.tips}</span></div></div>}</div></div></div>
+                    <div className={`grid transition-all duration-300 ease-in-out ${isExpanded ? 'grid-rows-[1fr] opacity-100 mb-4' : 'grid-rows-[0fr] opacity-0'}`}><div className="overflow-hidden"><p className="text-sm text-[#2E4057]/80 font-medium leading-relaxed mb-3 whitespace-pre-wrap">{spot.desc}</p><div className="space-y-3">{spot.schedule && <div className="bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><p className="text-xs font-bold text-[#2E4057] mb-2">表演時間表</p>{spot.schedule.map((sch, i) => <div key={i} className="flex justify-between text-xs text-[#819FA1] border-b border-dashed border-[#819FA1]/10 last:border-0 py-1"><span>{sch.name}</span><span className="font-mono">{sch.time}</span></div>)}</div>}{spot.food&&spot.food!=='-'&&<div className="flex items-start gap-3 bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><div className="bg-[#2E4057]/10 p-1.5 rounded text-[#2E4057] shrink-0 border border-[#2E4057]/10"><Utensils size={14}/></div><div className="flex-1"><span className="text-xs text-[#2E4057] font-medium">{spot.food}</span></div></div>}{spot.souvenir&&spot.souvenir!=='-'&&<div className="flex items-start gap-3 bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><div className="bg-[#2E4057]/10 p-1.5 rounded text-[#2E4057] shrink-0 border border-[#2E4057]/10"><ShoppingBag size={14}/></div><div className="flex-1"><span className="text-xs text-[#2E4057] font-medium">{spot.souvenir}</span></div></div>}{spot.game&&spot.game!=='-'&&<div className="flex items-start gap-3 bg-white p-3 rounded-lg border border-[#819FA1]/10 shadow-sm"><div className="bg-[#2E4057]/10 p-1.5 rounded text-[#2E4057] shrink-0 border border-[#2E4057]/10"><Gamepad2 size={14}/></div><div className="flex-1"><span className="text-xs text-[#2E4057] font-medium">{spot.game}</span></div></div>}{spot.tips&&spot.tips!=='-'&&<div className="flex items-start gap-3 bg-red-50 p-3 rounded-lg border border-red-100 shadow-sm"><div className="text-red-400 shrink-0 mt-0.5"><AlertTriangle size={14}/></div><div className="flex-1"><span className="text-xs text-red-600 font-medium">{spot.tips}</span></div></div>}</div></div></div>
                 </div>
             );
         };
@@ -421,17 +415,20 @@
                 { id: 1, title: '日本旅遊信用卡攻略', url: 'https://www.beurlife.com/2022/09/best-credit-card-to-travel-japan.html', desc: '詳細比較吉鶴卡、熊本熊卡等優惠' }
             ]));
             const [newLinkData, setNewLinkData] = useState({ title: '', url: '' });
-            const [isAnalyzingLink, setIsAnalyzingLink] = useState(false);
+            const [editingLinkId, setEditingLinkId] = useState(null); // 新增：編輯連結狀態
 
             const [isEditingCards, setIsEditingCards] = useState(false);
             const [showAddCardModal, setShowAddCardModal] = useState(false);
             const [editingCardId, setEditingCardId] = useState(null);
             const [newCardData, setNewCardData] = useState({ name: '', reward: '', type: 'credit', color: 'bg-slate-700', desc: '', limit: '', tags: [] });
 
-            const [expenses, setExpenses] = useState(() => safeJsonParse('expenses', []));
-            const [budget, setBudget] = useState(() => safeJsonParse('budget', 200000)); 
+            // Shopping & Expenses
+            const [showAddItemModal, setShowAddItemModal] = useState(false);
+            const [smartInputText, setSmartInputText] = useState('');
+            const [isSmartAnalyzing, setIsSmartAnalyzing] = useState(false);
+            const [newItemData, setNewItemData] = useState({ name: '', price: '', location: '', desc: '', image: null });
+            const [editingShoppingIndex, setEditingShoppingIndex] = useState(null);
             
-            // NEW: Search and Date state
             const [searchTerm, setSearchTerm] = useState('');
             const [newExpense, setNewExpense] = useState({ 
                 date: new Date().toISOString().split('T')[0], // Default today
@@ -443,13 +440,8 @@
             });
             const [editingExpense, setEditingExpense] = useState(null);
 
-            // Shopping & Expenses
-            const [showAddItemModal, setShowAddItemModal] = useState(false);
-            const [smartInputText, setSmartInputText] = useState('');
-            const [isSmartAnalyzing, setIsSmartAnalyzing] = useState(false);
-            const [newItemData, setNewItemData] = useState({ name: '', price: '', location: '', desc: '', image: null });
-            const [editingShoppingIndex, setEditingShoppingIndex] = useState(null);
-            
+            const [expenses, setExpenses] = useState(() => safeJsonParse('expenses', []));
+            const [budget, setBudget] = useState(() => safeJsonParse('budget', 200000)); 
 
             const [shoppingList, setShoppingList] = useState(() => safeJsonParse('shoppingList', {
                 "機場": [
@@ -466,12 +458,12 @@
             }));
 
             const [cards, setCards] = useState(() => safeJsonParse('cards', [
-                { id: 'jihe', name: '聯邦吉鶴卡', reward: '最高 7%', type: 'credit', color: 'bg-gradient-to-r from-rose-700 to-pink-900', limit: 100000, tags: ['指定 7%', 'AP 4%', '一般 2.5%'], desc: "★指定11大通路 7% (需Apple Pay，低消100台幣)：\n7-11、全家、Lawson、Bic Camera、Yodobashi、唐吉訶德、永旺、大丸、三越、高島屋。\n★其他Apple Pay 4%。" },
-                { id: 'kumamon', name: '玉山熊本熊卡', reward: '指定 8.5%', type: 'credit', color: 'bg-gradient-to-r from-slate-700 to-slate-900', limit: 41500, tags: ['Suica 8.5%', '藥妝 8.5%', '唐吉 8.5%'], desc: "★指定通路 8.5%：Bic Camera、Yodobashi、松本清、唐吉訶德、大國藥妝、Uniqlo、GU、Suica儲值。" },
-                { id: 'dbs_eco', name: '星展 eco', reward: '實體 5%', type: 'credit', color: 'bg-gradient-to-r from-emerald-600 to-emerald-800', limit: 75000, tags: ['實體卡 5%', '無腦刷'], desc: "實體刷卡享 5% (1%無上限+4%加碼)。" },
-                { id: 'unicard', name: '玉山 Unicard', reward: 'Up選 4.5%', type: 'credit', color: 'bg-gradient-to-r from-violet-600 to-fuchsia-800', limit: 710000, tags: ['大額 > 3萬', '4.5%'], desc: "大額消費首選。" },
-                { id: 'suica', name: 'Mobile Suica', reward: '交通/超商', type: 'transport', color: 'bg-gradient-to-r from-emerald-800 to-emerald-900', limit: 0, tags: ['交通', '販賣機'] },
-                { id: 'cash', name: '日幣現金', reward: '現金', type: 'cash', color: 'bg-gradient-to-r from-amber-700 to-amber-900', limit: 0, tags: ['老店'] }
+                { id: 'jihe', name: '聯邦吉鶴卡', reward: '最高 7% (Apple Pay)', type: 'credit', color: 'bg-gradient-to-r from-rose-700 to-pink-900', limit: 100000, tags: ['指定 7%', 'AP 4%', '一般 2.5%'], desc: "★指定11大通路 7% (需Apple Pay，低消100台幣)：\n7-11、全家、Lawson、Bic Camera、Yodobashi、唐吉訶德、永旺(AEON)、大丸、三越、高島屋、迪士尼、環球影城。\n★Apple Pay 4%：1.5%加碼上限 NT$600 (刷約4萬)。" },
+                { id: 'kumamon', name: '玉山熊本熊卡', reward: '指定 8.5% / PayPay 5%', type: 'credit', color: 'bg-gradient-to-r from-slate-700 to-slate-900', limit: 41500, tags: ['Suica 8.5%', '藥妝 8.5%', '唐吉 8.5%'], desc: "★指定通路 8.5%：Bic Camera、Yodobashi、松本清、唐吉訶德、大國藥妝、Uniqlo、GU、Suica儲值。(加碼上限 NT$500，刷約 NT$8,333)。\n★一般消費：2% (雙幣卡免收1.5%手續費)。" },
+                { id: 'dbs_eco', name: '星展 eco 永續卡', reward: '實體卡 5% (上限 1.5萬)', type: 'credit', color: 'bg-gradient-to-r from-emerald-600 to-emerald-800', limit: 75000, tags: ['實體卡 5%', '無腦刷', '歐美日韓'], desc: "【2026海外實體卡神卡】\n日本/韓國/新/泰/美/歐實體刷卡享 5% (1%無上限+4%加碼)。\n加碼月上限 NT$600 (刷約 NT$15,000)。超過後回饋 1% 無上限。" },
+                { id: 'unicard', name: '玉山 Unicard (Up選)', reward: 'Up選 4.5% (上限 14萬)', type: 'credit', color: 'bg-gradient-to-r from-violet-600 to-fuchsia-800', limit: 710000, tags: ['大額 > 3萬', '精品/家電', '4.5%'], desc: "【已訂閱Up選方案 (月費 NT$99)】\n百大通路(含日本) 4.5% 回饋。回饋上限 5,000點 (刷約 NT$14.2萬)。\n攻略：單月日本消費 > 3萬台幣時，回饋率勝過吉鶴卡。適合：精品、高單價家電、大量採購。" },
+                { id: 'suica', name: 'Mobile Suica', reward: '交通/超商/販賣機', type: 'transport', color: 'bg-gradient-to-r from-emerald-800 to-emerald-900', limit: 0, tags: ['交通', '販賣機', '超商'], desc: "建議綁定熊本熊卡 (8.5%) 或吉鶴卡 (0%回饋但方便)。" },
+                { id: 'cash', name: '日幣現金', reward: '剩餘 ¥21,622', type: 'cash', color: 'bg-gradient-to-r from-amber-700 to-amber-900', limit: 0, tags: ['老店', '路邊攤'], desc: "主要用於不收信用卡的傳統店家、投幣機、部分門票。" }
             ]));
 
             // Persist Data
@@ -496,7 +488,6 @@
                 return { totalSpent: total, remainingCash: INITIAL_CASH - cashSpent, categoryStats: stats, cardSpendMap: cardMap };
             }, [expenses]);
             
-            // Filter Expenses
             const filteredExpenses = useMemo(() => {
                 if (!searchTerm) return expenses;
                 const term = searchTerm.toLowerCase();
@@ -507,12 +498,10 @@
                 );
             }, [expenses, searchTerm, cards]);
 
-            // UI Helpers
             const showToast = (msg) => { setToastMsg(msg); setTimeout(() => setToastMsg(''), 2500); };
             const confirmAction = (title, msg, action) => setConfirmModal({ open: true, title, msg, onConfirm: action });
             const promptAction = (title, value, action) => setPromptModal({ open: true, title, value, onConfirm: action });
 
-            // Actions
             const handleDeleteShoppingItem = (category, index) => {
                 confirmAction('刪除商品', '確定要刪除這個商品嗎？', () => {
                     const newList = { ...shoppingList };
@@ -531,7 +520,7 @@
                     selectedCardId = rec ? rec.id : 'cash';
                 }
                 const expense = { id: Date.now(), ...newExpense, cardId: selectedCardId, cost: Number(newExpense.cost) };
-                setExpenses([expense, ...expenses]); // Add to top
+                setExpenses([expense, ...expenses]);
                 setNewExpense({ ...newExpense, item: '', cost: '', category: 'shopping', cardId: '', note: '' });
                 showToast('記帳成功');
             };
@@ -555,7 +544,6 @@
                     if (!card.limit || card.limit === 0) return true;
                     return ((currentSpendMap[cardId] || 0) + costNum) <= card.limit;
                 };
-
                 const isKumamon = /bic|yodo|donki|唐吉|uniqlo|gu|muji|無印|松本清|大國|藥妝/.test(lowerItem);
                 const isJihe = /bic|yodo|donki|唐吉|三越|高島屋|永旺|aeon|edion|大丸|迪士尼|環球/.test(lowerItem);
                 
@@ -660,14 +648,25 @@
                 });
             };
 
-            const handleAddLink = () => {
+            // --- 新增：連結編輯功能 ---
+            const handleAddOrUpdateLink = () => {
                 if (!newLinkData.url) { showToast('請輸入網址'); return; }
-                setSavedLinks([...savedLinks, { id: Date.now(), ...newLinkData, title: newLinkData.title || '未命名連結' }]);
+                if (editingLinkId) {
+                    setSavedLinks(savedLinks.map(l => l.id === editingLinkId ? { ...l, ...newLinkData } : l));
+                    setEditingLinkId(null);
+                    showToast('連結已更新');
+                } else {
+                    setSavedLinks([...savedLinks, { id: Date.now(), ...newLinkData, title: newLinkData.title || '未命名連結' }]);
+                    showToast('連結已新增');
+                }
                 setNewLinkData({ title: '', url: '' });
-                showToast('連結已新增');
+            };
+            
+            const handleEditLink = (link) => {
+                setNewLinkData({ title: link.title, url: link.url });
+                setEditingLinkId(link.id);
             };
 
-            // Added: Delete Link Handler
             const handleDeleteLink = (id) => {
                  confirmAction('刪除連結', '確定要刪除這個連結嗎？', () => {
                     setSavedLinks(savedLinks.filter(l => l.id !== id));
@@ -900,6 +899,11 @@
                                                 <div className="text-right"><div className="font-mono text-xl font-bold">¥{spend.toLocaleString()}</div><div className="text-[9px] opacity-70">≈ NT${Math.round(spend*EXCHANGE_RATE).toLocaleString()}</div></div>
                                             </div>
                                             {card.limit > 0 && progress >= 100 && <div className="mt-2 bg-red-500/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1"><AlertCircle size={10}/> 已達上限</div>}
+                                            {card.desc && (
+                                                <div className="mt-4 text-[10px] text-white/70 bg-black/30 p-3 rounded-lg backdrop-blur-md border border-white/5 leading-relaxed whitespace-pre-wrap relative z-10">
+                                                    {card.desc}
+                                                </div>
+                                            )}
                                         </div>
                                     )
                                 })}
@@ -921,14 +925,30 @@
                              </div>
                         )}
 
-                        {/* Links Tab - Fixed with confirmation */}
+                        {/* Links Tab */}
                         {activeTab === 'links' && (
                              <div className="space-y-4">
-                                <div className="flex gap-2 mb-4"><input type="text" placeholder="網址" className="flex-1 p-3 rounded-lg border" value={newLinkData.url} onChange={e=>setNewLinkData({...newLinkData, url:e.target.value})}/><button onClick={handleAddLink} className="bg-[#2E4057] text-white p-3 rounded-lg"><Plus/></button></div>
+                                <div className="flex gap-2 mb-4">
+                                    <input type="text" placeholder="標題" className="flex-1 p-3 rounded-lg border text-sm" value={newLinkData.title} onChange={e=>setNewLinkData({...newLinkData, title:e.target.value})}/>
+                                    <input type="text" placeholder="網址" className="flex-1 p-3 rounded-lg border text-sm" value={newLinkData.url} onChange={e=>setNewLinkData({...newLinkData, url:e.target.value})}/>
+                                    <button onClick={handleAddOrUpdateLink} className="bg-[#2E4057] text-white p-3 rounded-lg shadow-lg">
+                                        {editingLinkId ? <Save size={20}/> : <Plus size={20}/>}
+                                    </button>
+                                </div>
                                 {savedLinks.map(l => (
                                     <div key={l.id} className="bg-white p-4 rounded-xl flex justify-between items-center shadow-sm">
-                                        <div className="flex items-center gap-3 overflow-hidden"><LinkIcon size={16} className="text-[#819FA1]"/><div className="truncate"><div className="font-bold text-[#2E4057] text-sm">{l.title}</div><div className="text-[10px] text-[#819FA1] truncate">{l.url}</div></div></div>
-                                        <div className="flex gap-2"><a href={l.url} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded text-[#2E4057]"><ExternalLink size={16}/></a><button onClick={()=>handleDeleteLink(l.id)} className="p-2 bg-red-50 text-red-400 rounded"><Trash2 size={16}/></button></div>
+                                        <div className="flex items-center gap-3 overflow-hidden">
+                                            <div className="bg-[#F4B942]/10 p-2 rounded-full text-[#F4B942]"><LinkIcon size={16}/></div>
+                                            <div className="truncate">
+                                                <div className="font-bold text-[#2E4057] text-sm">{l.title}</div>
+                                                <div className="text-[10px] text-[#819FA1] truncate">{l.url}</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <a href={l.url} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded text-[#2E4057]"><ExternalLink size={16}/></a>
+                                            <button onClick={()=>handleEditLink(l)} className="p-2 bg-blue-50 text-blue-400 rounded"><Pencil size={16}/></button>
+                                            <button onClick={()=>handleDeleteLink(l.id)} className="p-2 bg-red-50 text-red-400 rounded"><Trash2 size={16}/></button>
+                                        </div>
                                     </div>
                                 ))}
                              </div>
@@ -1006,4 +1026,3 @@
     </script>
 </body>
 </html>
-
